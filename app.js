@@ -19,6 +19,18 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.post("/create", async(req, res) => {
+ let {username,email,password,age} = req.body
+ 
+ let createdUser = await userModel.create({
+    username,
+    email,
+    password,
+    age,
+  })
+  res.send(createdUser)
+});
+
 // server
 app.listen(3000, () => {
   console.log("Server running on port 3000");
